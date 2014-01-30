@@ -1,9 +1,9 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     id="eu.endare.push"
     version="1.0.0">
-    
+
     <js-module src="www/client.js">
-        <clobbers target="eu.endare.push" />
+        <clobbers target="PushNotification" />
     </js-module>
 
     <platform name="blackberry10">

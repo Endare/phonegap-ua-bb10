@@ -32,7 +32,7 @@ UrbanAirship::~UrbanAirship() {
 
 // These methods are the true native code we intend to reach from WebWorks
 std::string UrbanAirship::templateTestString() {
-	return "Template Test Function";
+	return "UrbanAirship test";
 }
 
 } /* namespace webworks */
