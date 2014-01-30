@@ -1,25 +1,19 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-    xmlns:rim="http://www.blackberry.com/ns/widgets"
     id="eu.endare.push"
     version="1.0.0">
-
+    
     <js-module src="www/client.js">
-        <clobbers target="blackberry.push" />
+        <clobbers target="eu.endare.push" />
     </js-module>
 
     <platform name="blackberry10">
         <source-file src="src/blackberry10/index.js" />
 
-        <lib-file src="src/blackberry10/native/device/libUrbanAirshipBB10.so" arch="device" />
-        <lib-file src="src/blackberry10/native/simulator/libUrbanAirshipBB10.so" arch="simulator" />
+        <lib-file src="src/blackberry10/native/device/libUrbanAirshipBB10.so" arch="device"/>
+        <lib-file src="src/blackberry10/native/simulator/libUrbanAirshipBB10.so" arch="simulator"/>
 
         <config-file target="www/config.xml" parent="/widget">
             <feature name="eu.endare.push" value="eu.endare.push" />
-        </config-file>
-        
-        <config-file target="www/config.xml" parent="/widget/rim:permissions">
-            <rim:permit system="true">_sys_use_consumer_push</rim:permit>
-            <rim:permit>run_when_backgrounded</rim:permit>
         </config-file>
     </platform>
 </plugin>
