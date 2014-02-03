@@ -1,19 +1,47 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets" 
     id="eu.endare.push"
     version="1.0.0">
 
-    <js-module src="www/client.js">
+    <js-module src="www/PushNotification.js" name="PushNotification">
         <clobbers target="PushNotification" />
     </js-module>
 
-    <platform name="blackberry10">
-        <source-file src="src/blackberry10/index.js" />
+    <js-module src="www/Base64.js" name="Base64" />
 
-        <lib-file src="src/blackberry10/native/device/libUrbanAirshipBB10.so" arch="device"/>
-        <lib-file src="src/blackberry10/native/simulator/libUrbanAirshipBB10.so" arch="simulator"/>
+    <dependency id="com.blackberry.invoked" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.invoked" />
+    <dependency id="com.blackberry.push" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.push" />
+    <dependency id="com.blackberry.notification" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.notification" />
+    <dependency id="com.blackberry.app" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.app" />
+
+    <platform name="blackberry10">
+        <source-file src="src/blackberry10/index.js" target-dir="PushNotification" />
 
         <config-file target="www/config.xml" parent="/widget">
             <feature name="eu.endare.push" value="eu.endare.push" />
+
+            <rim:invoke-target id="eu.endare.invoke.push">
+                <type>APPLICATION</type>
+                <filter>
+                    <action>bb.action.PUSH</action>
+                    <mime-type>application/vnd.push</mime-type>
+                </filter>
+            </rim:invoke-target>
+
+            <rim:invoke-target id="eu.endare.invoke.open">
+                <type>APPLICATION</type>
+                <filter>
+                    <action>bb.action.OPEN</action>
+                    <mime-type>text/plain</mime-type>
+                </filter>
+            </rim:invoke-target>
+
+            <access origin="https://urbanairship.com" subdomains="true" />
         </config-file>
+
+<!--         <config-file target="www/config.xml" parent="/widget/rim:permissions">
+            <rim:permit>post_notification</rim:permit>
+            <rim:permit>read_device_identifying_information</rim:permit>
+        </config-file> -->
     </platform>
 </plugin>
