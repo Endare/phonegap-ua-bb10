@@ -95,7 +95,7 @@ var PushNotification = (function() {
                     callback(service);
                 }
 
-                function onError() { }
+                function onError(result) { }
 
                 function onSimChanged() { }
 
