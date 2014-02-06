@@ -20,7 +20,7 @@
         <config-file target="www/config.xml" parent="/widget">
             <feature name="eu.endare.push" value="eu.endare.push" />
 
-            <rim:invoke-target id="eu.endare.invoke.push">
+            <rim:invoke-target id="com.endare.pzhoutsche.push">
                 <type>APPLICATION</type>
                 <filter>
                     <action>bb.action.PUSH</action>
@@ -28,7 +28,7 @@
                 </filter>
             </rim:invoke-target>
 
-            <rim:invoke-target id="eu.endare.invoke.open">
+            <rim:invoke-target id="com.endare.pzhoutsche.open">
                 <type>APPLICATION</type>
                 <filter>
                     <action>bb.action.OPEN</action>

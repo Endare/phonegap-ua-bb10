@@ -10,7 +10,7 @@ module.exports = {
             appKey: (inProduction ? config['com.urbanairship.production_app_key'] : config['com.urbanairship.development_app_key']),
             appSecret: (inProduction ? config['com.urbanairship.production_app_secret'] : config['com.urbanairship.development_app_secret']),
             appId: config['com.urbanairship.blackberry_app_id'],
-            ppgUrl: (inProduction && config['com.urbanairship.blackberry_cpid'] ? 'http://cp' + config['com.urbanairship.blackberry_cpid'] + '.pushapi.eval.blackberry.com' : 'http://pushapi.eval.blackberry.com')
+            ppgUrl: (inProduction && config['com.urbanairship.blackberry_cpid'] ? 'http://cp' + config['com.urbanairship.blackberry_cpid'] + '.pushapi.na.blackberry.com' : 'http://pushapi.eval.blackberry.com')
         };
 
         result.ok(preferences);
