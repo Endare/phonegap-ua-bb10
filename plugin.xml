@@ -28,7 +28,7 @@
                 </filter>
             </rim:invoke-target>
 
-            <rim:invoke-target id="com.endare.pzhoutsche.open">
+            <rim:invoke-target id="com.endare.pzhoutsche.open201">
                 <type>APPLICATION</type>
                 <filter>
                     <action>bb.action.OPEN</action>
