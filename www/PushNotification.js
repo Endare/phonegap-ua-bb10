@@ -20,7 +20,7 @@ var PushNotification = (function() {
 
     function PushNotification() {
         pushOptions = {
-            invokeTargetId: 'com.endare.pzhoutsche.push201'
+            invokeTargetId: 'com.endare.pzhoutsche.push'
         };
 
         _this.loadPreferences();
