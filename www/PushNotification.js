@@ -20,7 +20,7 @@ var PushNotification = (function() {
 
     function PushNotification() {
         pushOptions = {
-            invokeTargetId: 'com.endare.pzhoutsche.push'
+            invokeTargetId: 'com.endare.pzmeetjesland.push'
         };
 
         _this.loadPreferences();
