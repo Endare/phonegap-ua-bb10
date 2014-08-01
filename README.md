@@ -8,7 +8,7 @@ You should add the following preferences and invoke targets to the config.xml fi
 ```xml
 <preference name="com.urbanairship.blackberry_app_id" value="" />
 <preference name="com.urbanairship.blackberry_cpid" value="" />
-<preference name="invokeTargetId" value="com.endare.myapp.push">
+<preference name="invokeTargetId" value="com.endare.myapp.push" />
 <rim:invoke-target id="com.endare.myapp.push">
     <type>APPLICATION</type>
     <filter>
