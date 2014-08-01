@@ -1,7 +1,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
-    id="eu.endare.push"
-    version="1.0.0">
+    id="com.endare.push"
+    version="1.0.1">
 
     <js-module src="www/PushNotification.js" name="PushNotification">
         <clobbers target="PushNotification" />
