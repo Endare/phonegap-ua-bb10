@@ -5,13 +5,13 @@ var base64 = require('./Base64');
 /**
  * The PushNotification class is exposed to the programmer. It offers a methods to
  * enable the push or receive an incoming push message.
- * 
+ *
  * @author Sam Verschueren <sam.verschueren@endare.com>
  * @since  31 Jan. 2014
  */
 var PushNotification = (function() {
 
-    var pushOptions;
+    var pushOptions = {};
     var pushService = null;
     var pushCallback = null;
     var preferences = null;
@@ -19,17 +19,13 @@ var PushNotification = (function() {
     var hasBeenInForeground = false;
 
     function PushNotification() {
-        pushOptions = {
-            invokeTargetId: 'com.endare.pzmeetjesland.push'
-        };
-
         _this.loadPreferences();
     };
 
     /**
      * Returns a boolean indicating if the push service is enabled or not. It is
      * implemented as a callback because we want the same implementation as UrbanAirship.
-     * 
+     *
      * @param  Function callback The method that is called when the result is determined.
      */
     PushNotification.prototype.isPushEnabled = function(callback) {
@@ -37,7 +33,7 @@ var PushNotification = (function() {
     };
 
     /**
-     * This method enables push for the application on the device. 
+     * This method enables push for the application on the device.
      */
     PushNotification.prototype.enablePush = function() {
         // Initialize the pushservice
@@ -60,7 +56,7 @@ var PushNotification = (function() {
     /**
      * This method registers a callback that will be called when the user opens a notification
      * in the HUB.
-     * 
+     *
      * @param  Function callback The callback that should be called when a notification is opened.
      */
     PushNotification.prototype.getIncoming = function(callback) {
@@ -72,7 +68,7 @@ var PushNotification = (function() {
         /**
          * This method initializes the PushNotification object by creating a new PushService if
          * necessary and setting the correct values regarding the hasBeenInForeground stuff.
-         * 
+         *
          * @param  Function callback The callback that should be called when the pushService is initialized.
          */
         initialize: function(callback) {
@@ -103,14 +99,14 @@ var PushNotification = (function() {
 
                 return;
             }
-            
+
             // If we already have a pushservice, call the callback
             callback(pushService);
         },
         /**
          * This method will register the token provided with Urban Airship. We have to make sure
          * that Urban Airship knows of our existence before it can send push messages to our device.
-         * 
+         *
          * @param  string token The token that should be registered with Urban Airship.
          */
         register: function(token) {
@@ -125,11 +121,11 @@ var PushNotification = (function() {
             request.setRequestHeader('Authorization', 'Basic ' + auth);
 
             // Send the request
-            request.send();            
+            request.send();
         },
         /**
          * This method will retrieve the payload from an InvokeRequest object.
-         * 
+         *
          * @param  Object   invokeRequest The request where we want to extract the payload of.
          * @param  Function callback      The callback that should be triggered when the payload is extracted.
          */
@@ -157,7 +153,7 @@ var PushNotification = (function() {
         /**
          * This method is called when a push is received or when the user presses the open action
          * in the push notification.
-         * 
+         *
          * @param  Object invokeRequest The request regarding the invoke action.
          */
         onInvoke: function(invokeRequest) {
@@ -203,7 +199,7 @@ var PushNotification = (function() {
          */
         exitApplication: function() {
             setTimeout(function() {
-                // Check again that the application has not been 
+                // Check again that the application has not been
                 // brought to the foreground in the second before
                 // we exit
                 if (!hasBeenInForeground) {
@@ -221,7 +217,8 @@ var PushNotification = (function() {
 
                 // Set the correct pushOptions regarding of the preferences in the config.xml file
                 pushOptions.appId = result.appId;
-                pushOptions.ppgUrl = result.ppgUrl
+                pushOptions.ppgUrl = result.ppgUrl;
+                pushOptions.invokeTargetId = result.invokeTargetId;
             };
 
             // Do nothing on failure. The channel will not be created

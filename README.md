@@ -1,6 +1,34 @@
 # phonegap-ua-bb10
 
-A PhoneGap plugin for using Urban Airship on the awesome BlackBerry 10 platform
+A PhoneGap plugin for using Urban Airship on the awesome BlackBerry 10 platform.
+
+## Config.xml
+You should add the following preferences and invoke targets to the config.xml file.
+
+```xml
+<preference name="com.urbanairship.blackberry_app_id" value="" />
+<preference name="com.urbanairship.blackberry_cpid" value="" />
+<preference name="invokeTargetId" value="com.endare.myapp.push">
+<rim:invoke-target id="com.endare.myapp.push">
+    <type>APPLICATION</type>
+    <filter>
+        <action>bb.action.PUSH</action>
+        <mime-type>application/vnd.push</mime-type>
+    </filter>
+</rim:invoke-target>
+
+<rim:invoke-target id="com.endare.myapp.open">
+    <type>APPLICATION</type>
+    <filter>
+        <action>bb.action.OPEN</action>
+        <mime-type>text/plain</mime-type>
+    </filter>
+</rim:invoke-target>
+```
+
+The value of the first line is the application ID that is provided by BlackBerry. The second value is the Content Provider ID, also provided by blackberry. The following lines are used to handle the push notification. The invokeTargetId
+specified on line 3 should be the same as the invoke-target id of line 4. This is really important. The last invoke-target id is not that important. Although both invoke-targets should be unique in the entire BlackBerry World, so pick
+them with care. Best practice is to use you company domain joined with the app name and then either push or open.
 
 ## IMPORTANT
 
@@ -53,3 +81,6 @@ for(var key in pref) {
     }
 }
 ```
+
+## Contributors
+* Sam Verschueren   [sam.verschueren@gmail.com]
