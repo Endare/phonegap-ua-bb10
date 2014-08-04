@@ -9,10 +9,10 @@
 
     <js-module src="www/Base64.js" name="Base64" />
 
-    <dependency id="com.blackberry.invoked" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.invoked" />
-    <dependency id="com.blackberry.push" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.push" />
-    <dependency id="com.blackberry.notification" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.notification" />
-    <dependency id="com.blackberry.app" url="https://github.com/blackberry/cordova-blackberry-plugins" commit="master" subdir="plugin/com.blackberry.app" />
+    <dependency id="com.blackberry.invoked" />
+    <dependency id="com.blackberry.push" />
+    <dependency id="com.blackberry.notification" />
+    <dependency id="com.blackberry.app" />
 
     <platform name="blackberry10">
         <source-file src="src/blackberry10/index.js" target-dir="PushNotification" />
@@ -21,6 +21,10 @@
             <feature name="com.endare.push" value="com.endare.push" />
 
             <access origin="https://urbanairship.com" subdomains="true" />
+        </config-file>
+
+        <config-file target="www/config.xml" parent="/widget/rim:permissions">
+            <rim:permit system="true">_sys_use_consumer_push</rim:permit>
         </config-file>
     </platform>
 </plugin>
