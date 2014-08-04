@@ -18,7 +18,7 @@
         <source-file src="src/blackberry10/index.js" target-dir="PushNotification" />
 
         <config-file target="www/config.xml" parent="/widget">
-            <feature name="eu.endare.push" value="eu.endare.push" />
+            <feature name="com.endare.push" value="com.endare.push" />
 
             <access origin="https://urbanairship.com" subdomains="true" />
         </config-file>
