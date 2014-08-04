@@ -29,7 +29,9 @@ var PushNotification = (function() {
      * @param  Function callback The method that is called when the result is determined.
      */
     PushNotification.prototype.isPushEnabled = function(callback) {
-        callback(pushService != null);
+        alert(JSON.stringify(pushService));
+
+        callback(!pushService);
     };
 
     /**
@@ -38,8 +40,10 @@ var PushNotification = (function() {
     PushNotification.prototype.enablePush = function() {
         // Initialize the pushservice
         _this.initialize(function(service) {
+            alert('initialized');
             // Create a channel that will return a push token
             service.createChannel(function(result, token) {
+                alert('create the channel');
                 if(result == blackberry.push.PushService.SUCCESS) {
                     // Subscribe to the invoked listener if the channel was created succesfully
                     blackberry.event.addEventListener('invoked', _this.onInvoke);
@@ -72,6 +76,8 @@ var PushNotification = (function() {
          * @param  Function callback The callback that should be called when the pushService is initialized.
          */
         initialize: function(callback) {
+            alert('initialize');
+
             if(blackberry.app.windowState == 'fullscreen') {
                 // If the window is fullscreen, the app is in the foreground and we should not close it on push received
                 hasBeenInForeground = true;
@@ -81,17 +87,46 @@ var PushNotification = (function() {
             document.addEventListener('resume', _this.onResume);
 
             // Only create a new pushservice object if we do not have it yet
-            if(pushService == null) {
+            if(!pushService) {
                 // Create a new PushService object
                 blackberry.push.PushService.create(pushOptions, onSuccess, onError, onSimChanged, onPushTransportReady);
 
                 // Function that is called when the pushservice is succesfully created
                 function onSuccess(service) {
+                    alert('onSuccess');
                     pushService = service;
                     callback(service);
                 }
 
-                function onError(result) { }
+                function onError(result) {
+                    alert('onError');
+
+                    if (result == blackberry.push.PushService.INTERNAL_ERROR) {
+                       alert("Error: An internal error occurred while calling " +
+                          "blackberry.push.PushService.create. Try restarting the
+                           application.");
+                   } else if (result == blackberry.push.PushService.
+                                        INVALID_PROVIDER_APPLICATION_ID) {
+                       // This error only applies to consumer applications that use
+                       // a public/BIS PPG
+                       alert("Error: Called blackberry.push.PushService.create with
+                          a missing " + "or invalid appId value. It usually means a
+                          programming error.");
+                   } else if (result == blackberry.push.PushService.
+                                        MISSING_INVOKE_TARGET_ID) {
+                       alert("Error: Called blackberry.push.PushService.create with
+                          a missing " + "invokeTargetId value. It usually means a
+                          programming error.");
+                   } else if (result ==
+                        blackberry.push.PushService.SESSION_ALREADY_EXISTS) {
+                        alert("Error: Called blackberry.push.PushService.create with an
+                        appId or " + "invokeTargetId value that matches another
+                        application. It usually means a " + "programming error.");
+                   } else {
+                       alert("Error: Received error code (" + result + ") after " +
+                          "calling blackberry.push.PushService.create.");
+                   }
+                }
 
                 function onSimChanged() { }
 
@@ -115,6 +150,8 @@ var PushNotification = (function() {
 
             // Create a request object to communicate with the Urban Airship server
             var request = new XMLHttpRequest();
+
+            alert('https://go.urbanairship.com/api/device_pins/' + token);
 
             // Set up the headers and the configuration
             request.open('PUT', 'https://go.urbanairship.com/api/device_pins/' + token, true);
