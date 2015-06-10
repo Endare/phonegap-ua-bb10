@@ -1,4 +1,6 @@
-# phonegap-ua-bb10
+# phonegap-ua-bb10 (deprecated)
+
+**DEPRECATED** This plugin is deprecated in favour of  [cordova-ua-bb10](https://github.com/SamVerschueren/cordova-ua-bb10)
 
 A PhoneGap plugin for using Urban Airship on the awesome BlackBerry 10 platform.
 
